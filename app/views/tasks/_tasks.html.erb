@@ -1,0 +1,24 @@
+<h1><%= current_user.name %>さんのタスク一覧</h1>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th class="text-center col-xs-1">ID</th>
+      <th class="text-center col-xs-5">タスク</th>
+      <th class="text-center col-xs-2">ステータス</th>
+      <th class="text-center col-xs-1"></th>
+      <th class="text-center col-xs-1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tasks.each do |task| %>
+      <tr>
+        <td class="text-center"><%= link_to task.id, task %></td>
+        <td><%= task.content %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to "編集", "tasks/#{task.id}/edit", class: 'btn btn-xs btn-warning center-block' %></td>
+        <td><%= link_to '削除', "tasks/#{task.id}", method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-danger btn-xs center-block" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
